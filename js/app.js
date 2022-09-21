@@ -91,8 +91,10 @@ button.addEventListener('click', (e) => {
         index++;
 
         newRow.addEventListener('click', () => {
-          modal.style.display = 'block';
-          modal.style.top = '80vh';
+          if (event.target.innerHTML !== 'X') {
+            modal.style.display = 'block';
+            modal.style.top = '80vh';
+          }
         });
 
         deletebtn.addEventListener('click', (e) => {
