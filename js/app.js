@@ -15,7 +15,6 @@ let savedForms = JSON.parse(localStorage.getItem("forms"));
 let index = savedForms === null ? 0 : Number(localStorage.index);
 let submitedForms = savedForms === null ? [] : savedForms;
 
-console.log(submitedForms);
 
 const inputArr = [firstName, lastName, address, birthday, gender, notes]
 button.addEventListener('click', (e) => {
@@ -70,6 +69,7 @@ deletebtn.style.textAlign = 'center';
 let close = document.querySelector('.close');
 close.addEventListener('click', ()  => {
   modal.style.display = 'none';
+  document.getElementById('myForm').style.opacity = 1;
 });
 
 
@@ -107,7 +107,7 @@ savedForms.forEach((item) => {
 
   deletebtn.addEventListener('click', (e) => {
   e.preventDefault();
-  console.log(submitedForms.splice(item.id-1,1));
+  submitedForms.splice(item.id-1,1);
   localStorage.setItem('forms', JSON.stringify(submitedForms));  
   cellOne.remove();
   cellTwo.remove();
@@ -122,48 +122,8 @@ savedForms.forEach((item) => {
   newRow.addEventListener('click', () => {
     if (event.target.innerHTML !== 'X') {
       modal.style.display = 'block';
-      modal.style.top = '80vh';
+      modal.style.marginTop = '10vh';
+      document.getElementById('myForm').style.opacity = 0.3;
     }
   });
 })
-// const createSubmitedForm = () =>  {
-//   let newRow = table.insertRow(row);
-
-      
-//   let cellOne = newRow.insertCell(0);
-//   let cellTwo = newRow.insertCell(1);
-//   let cellThree = newRow.insertCell(2);
-//   let cellFour = newRow.insertCell(3);
-//   let cellFive = newRow.insertCell(4);
-//   let cellSix = newRow.insertCell(5);
-//   let cellSeven = newRow.insertCell(6);
-//   let modalText = document.getElementById('modal-text');
-
-//   cellOne.innerHTML = index;
-//   cellTwo.innerHTML = localStorage.getItem('validationCustom01');
-//   cellThree.innerHTML = localStorage.getItem('validationCustom02');
-//   cellFour.innerHTML = localStorage.getItem('validationCustom03');
-//   cellFive.innerHTML = localStorage.getItem('birthday');
-//   cellSix.innerHTML = localStorage.getItem('validationCustom04');
-//   cellSeven.append(deletebtn);
-//   modalText .textContent = localStorage.getItem('floatingTextarea2');
-
-//   newRow.addEventListener('click', () => {
-//     if (event.target.innerHTML !== 'X') {
-//       modal.style.display = 'block';
-//       modal.style.top = '80vh';
-//     }
-//   });
-
-//   deletebtn.addEventListener('click', (e) => {
-//     e.preventDefault();
-//     cellOne.remove();
-//     cellTwo.remove();
-//     cellThree.remove();
-//     cellFour.remove();
-//     cellFive.remove();
-//     cellSix.remove();
-//     cellSeven.remove();
-//     index--;
-// });
-// }
